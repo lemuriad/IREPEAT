@@ -56,7 +56,7 @@ of hexadecimal literals - double-digit, same as the specified end index `(f)(f)`
 ```cpp
 0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0a,0x0b
   ...
-0xf4,0xf5,0xf6,0xf7,0xf8,0xf9,0xfa,0xfb,0xfc,0xfd,0xfe,0xff 
+0xf4,0xf5,0xf6,0xf7,0xf8,0xf9,0xfa,0xfb,0xfc,0xfd,0xfe,0xff
 ```
 
 </details>
@@ -98,7 +98,7 @@ Beware of vanishing zero-length XREPEAT; use IREPEAT, I repeat, use IREPEAT.
 
 ### **`VREPEAT.hpp`**: Vertical repetition
 
-<details><summary>'<b>Vertical</b>' repetition expands each  macro on its own line by repeated <code>#include</code>.</summary>
+<details><summary>'<b>Vertical</b>' repetition expands each  macro on its own line by repeated <code>#include</code></summary>
 
 ```cpp
 #include "IREPEAT.hpp"
@@ -133,7 +133,7 @@ Otherwise, it is expanded as `VREPEAT_MACRO(VREPEAT_INDEX)`
 
 ### **`HEXS`**: hexadecimal digit sequences
 
-<details><summary><b>Numbers</b> are represented hex digit sequences, e.g. <code>(1)(f) == 0x1f == 31</code></summary>
+<details><summary><b>Numbers</b> are represented as hex digit sequences, e.g. <code>(1)(f) == 0x1f == 31</code></summary>
 
 The HEXS representation here has up to 4 parenthesized hexadecimal digits:
 

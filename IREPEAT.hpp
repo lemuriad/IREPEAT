@@ -305,21 +305,3 @@ DOREP4(REPT(X,SHEAD(DDDD),(I,(f)(f)(f),S,M PRE)S,REPEAT3 POST))\
 REPEAT3(V,EAT DDDD,S,M PRE(SHEAD(DDDD))))
 
 #endif
-//XREPEAT((0),xD,COMMA)
-//IREPEAT((f),xD,COMMA)
-//
-//IREPEAT((0)(1),xD,COMMA)
-//IREPEAT((1)(1),xD,COMMA)
-//IREPEAT((3)(4),xD,COMMA)
-//IREPEAT((f)(f),xD,COMMA)
-
-//IREPEAT((0)(0)(f),xD,COMMA)
-//IREPEAT((f)(8)(8),xD,COMMA)
-
-//IREPEAT((8)(8)(8)(8),xD,COMMA)
-//IREPEAT((f)(e)(d)(c),xD,COMMA)
-
-//XREPEAT((1)(1)(1)(1),xD,COMMA)
-
-
-//unsigned char indseq[2][] { IREPEAT((f)(f),xD,COMMA) };
