@@ -4,6 +4,8 @@
   #define VREPEAT_COUNT  // HEXS repeat-count number
   #define VREPEAT_MACRO  // Macro or include-file to repeat
 */
+#define NREPEATS HEXLIT(VREPEAT_COUNT)
+
 #if __has_include(STR(VREPEAT_MACRO))
 #define VREPEAT_MACRO_STR STR(VREPEAT_MACRO)
 #endif
@@ -38,3 +40,4 @@
 #undef VREPEAT_MACRO
 #undef VREPEAT_MACRO_STR
 #undef NDIGITS
+#undef NREPEATS
