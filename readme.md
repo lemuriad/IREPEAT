@@ -36,7 +36,7 @@ Also at [boost.org](http://www.boost.org/LICENSE_1_0.txt) and accompanying file 
 
 </details>
 
-Preprocessor utilities to generate indexed repetitions, for 'codegen' purposes.  
+Preprocessor utilities to generate indexed repetitions, for codegen & etc.  
 The maximum repetition count is 2^16 = 65536; a 4 hex-digit index limit.
 
 ----
@@ -51,12 +51,12 @@ IREPEAT((f)(f),HEXLIT,COMMA) // Generate 256 values 0-255
 <details><summary><b>Preprocess</b>: e.g. <code>cpp -P -E IREPEAT_example.hpp</code> ...</summary>
 
 The provided `HEXLIT` macro is expanded 256 times to a comma-separated list  
-of hexadecimal literals - double-digit, same as the specified end index `(f)(f)`:
+of hexadecimal literals, ranging from `0x00` to `0xff` inclusive. The double-digit  
+output reflects the number of digits in the specified end index `(f)(f)`:
 
 ```cpp
-0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0a,0x0b
-  ...
-0xf4,0xf5,0xf6,0xf7,0xf8,0xf9,0xfa,0xfb,0xfc,0xfd,0xfe,0xff
+0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0a,0x0b,...
+ ... 0xf5,0xf6,0xf7,0xf8,0xf9,0xfa,0xfb,0xfc,0xfd,0xfe,0xff
 ```
 
 </details>
@@ -98,12 +98,13 @@ Beware of vanishing zero-length XREPEAT; use IREPEAT, I repeat, use IREPEAT.
 
 ### **`VREPEAT.hpp`**: Vertical repetition
 
-<details><summary>'<b>Vertical</b>' repetition expands each  macro on its own line by repeated <code>#include</code></summary>
+<details><summary>'<b>Vertical</b>' repetition expands each rep on its own line by repeated <code>#include</code></summary>
 
 ```cpp
 #include "IREPEAT.hpp"
 #define VREPEAT_COUNT (f)(f)
 #define VREPEAT_MACRO Iteration HEXLIT
+#define VREPEAT_SEPARATOR COMMA
 #include "VREPEAT.hpp"
 #include "IREPEAT_UNDEF.hpp"
 ```
@@ -111,21 +112,32 @@ Beware of vanishing zero-length XREPEAT; use IREPEAT, I repeat, use IREPEAT.
 Preprocesses to:
 
 ```cpp
-Iteration 0x00
-Iteration 0x01
+Iteration 0x00,
+Iteration 0x01,
   ...
-Iteration 0xfe
+Iteration 0xfe,
 Iteration 0xff
 ```
 
-Further; if stringized `VREPEAT_MACRO` is the name of an include file  
-as detected by `__has_include__(STR(VREPEAT_MACRO))`  
-then that file is included  for each repetition.
+`VREPEAT_MACRO` is expanded as either:
 
-Otherwise, it is expanded as `VREPEAT_MACRO(VREPEAT_INDEX)`
+1. `VREPEAT_MACRO(VREPEAT_INDEX)`
 
-`VREPEAT_INDEX` is automatically set to the repeat-count index  
-(in HEXS format as usual).
+  * `VREPEAT_SEPARATOR()` is appended, if defined,  
+  on all but the final repeat `NREPEAT == NREPEATS`
+
+2. `#include STR(VREPEAT_MACRO)`
+
+  * Used if stringized `VREPEAT_MACRO` is the name of an include file  
+as detected by `__has_include__(STR(VREPEAT_MACRO))`
+
+The following preprocessor names are set automatically:
+
+* `VREPEAT_INDEX`: The repeat index digits in HEXS format
+* `C3`,`C2`,`C1`,`C0`: Individual hex digits of `VREPEAT_COUNT`
+* `D3`,`D2`,`D1`,`D0`: Individual hex digits of `VREPEAT_INDEX`
+* `NREPEAT`: The repeat index as an integer literal
+* `NREPEATS`: `VREPEAT_COUNT` as an integer literal
 
 </details>
 
