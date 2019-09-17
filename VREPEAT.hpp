@@ -36,8 +36,11 @@
 #undef C2
 #undef C3
 
+#undef D3D2D1
+
 #undef VREPEAT_COUNT
 #undef VREPEAT_MACRO
 #undef VREPEAT_MACRO_STR
+#undef VREPEAT_SEPARATOR
 #undef NDIGITS
 #undef NREPEATS
