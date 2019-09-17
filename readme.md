@@ -36,6 +36,11 @@ Also at [boost.org](http://www.boost.org/LICENSE_1_0.txt) and accompanying file 
 
 </details>
 
+| Linux Travis| Windows Appveyor|
+| :---: | :---: |
+|gcc-9, clang-7|MSVC 19.21.27702.2|
+| [![Build Status](https://travis-ci.org/willwray/IREPEAT.svg?branch=master)](https://travis-ci.org/willwray/IREPEAT) | [![Build status](https://ci.appveyor.com/api/projects/status/a821x1mdyfhfah8w?svg=true)](https://ci.appveyor.com/project/willwray/IREPEAT) |
+
 Preprocessor utilities to generate indexed repetitions, for codegen & etc.  
 The maximum repetition count is 2^16 = 65536; a 4 hex-digit index limit.
 
