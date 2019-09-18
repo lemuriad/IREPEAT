@@ -31,10 +31,10 @@ constexpr bool c_str_cmp(const char* a, const char* b)
 
 // is_iota(array): C++11 constexpr test if array is index sequence 0,1,...
 // poops out around 2^9
-template <unsigned N,typename Int>
-constexpr bool is_iota(Int(&&a)[N], unsigned i=0)
+template <unsigned N,typename T>
+constexpr bool is_iota(T const(&a)[N], unsigned i=0)
 {
-  return a[i]-i == 0 && (i+1 == N || is_iota(static_cast<Int(&&)[N]>(a),i+1));
+  return a[i]-i==0 && (i+1==N || is_iota(static_cast<T const(&)[N]>(a),i+1));
 }
 
 // Concatenation tests

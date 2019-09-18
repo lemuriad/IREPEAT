@@ -47,8 +47,8 @@ build_script:
   #- cmd: msbuild c++latest\test_IREPEAT@exe.vcxproj /p:configuration=release
 
 test_script:
-  - cmd: ninja -C c++11 test
-  - cmd: ninja -C c++17 test
+  #- cmd: ninja -C c++11 test
+  #- cmd: ninja -C c++17 test
   #- cmd: ninja -C c++latest test
 
 only_commits:

@@ -21,7 +21,7 @@ constexpr bool c_str_cmp(const char* a, const char* b)
 template <unsigned N,typename Int>
 constexpr bool is_iota(Int(&a)[N], unsigned i=0)
 {
-  return a[i]-i == 0 && (i+1 == N || is_iota(static_cast<Int(&&)[N]>(a),i+1));
+  return a[i]-i == 0 && (i+1 == N || is_iota(static_cast<Int(&)[N]>(a),i+1));
 }
 
 TEST_CASE("Vertical REPEAT") {
@@ -75,7 +75,7 @@ struct char_triangle {
   ...
   char xf[1+0xf];
  };                    */
- 
+
 #define VREPEAT_COUNT (f)
 #define VREPEAT_MACRO CHAR_ARRAY_N
 
