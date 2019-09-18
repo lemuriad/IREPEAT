@@ -104,12 +104,18 @@ Beware of vanishing zero-length XREPEAT; use IREPEAT, I repeat, use IREPEAT.
 
 <details><summary>'<b>Vertical</b>' repetition expands each rep on its own line by repeated <code>#include</code></summary>
 
+First, #define `VREPEAT_MACRO` and `VREPEAT_COUNT` (inclusive),  
+and optionally #define `VREPEAT_SEPARATOR` to add separators,  
+then `#include "VREPEAT.hpp"` to process the repetitions:
+
 ```cpp
 #include "IREPEAT.hpp"
-#define VREPEAT_COUNT (f)(f)
+
+#define VREPEAT_COUNT (f)(f) // 0xff for 256 incl. reps
 #define VREPEAT_MACRO Iteration HEXLIT
 #define VREPEAT_SEPARATOR COMMA
 #include "VREPEAT.hpp"
+
 #include "IREPEAT_UNDEF.hpp"
 ```
 
@@ -123,17 +129,18 @@ Iteration 0xfe,
 Iteration 0xff
 ```
 
-`VREPEAT_MACRO` is expanded as either:
+`VREPEAT_MACRO` expands either (1) as a macro or (2) by `#include`:
 
 1. `VREPEAT_MACRO(VREPEAT_INDEX)`
 
-  * `VREPEAT_SEPARATOR()` is appended, if defined,  
-  on all but the final repeat `NREPEAT == NREPEATS`
-
 2. `#include STR(VREPEAT_MACRO)`
 
-  * Used if stringized `VREPEAT_MACRO` is the name of an include file  
-as detected by `__has_include__(STR(VREPEAT_MACRO))`
+`#include` expansion (2) is used if `__has_include__(STR(VREPEAT_MACRO))`  
+i.e. the stringized `VREPEAT_MACRO` is the name of a file in the include path.
+
+Otherwise, macro expansion (1) is used with `VREPEAT_SEPARATOR()` appended,  
+if defined, on all but the final repeat (when `NREPEAT == NREPEATS`).  
+A separator is not added after #include expansion (2); add it in the file if needed.
 
 The following preprocessor names are set automatically:
 
@@ -142,6 +149,9 @@ The following preprocessor names are set automatically:
 * `D3`,`D2`,`D1`,`D0`: Individual hex digits of `VREPEAT_INDEX`
 * `NREPEAT`: The repeat index as an integer literal
 * `NREPEATS`: `VREPEAT_COUNT` as an integer literal
+
+`#include "VREPEAT.hpp"` undef's these symbols and all others it defines  
+so can be used repeatedly.
 
 </details>
 
