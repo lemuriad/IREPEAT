@@ -86,7 +86,7 @@ XREPEAT(N,M,S) -> M((0)) S() ... M(N-2) S() M(N-1)
 * **S** is a separator-generator argument, i.e. **S()** expands to a separator.
 
 Number **N** (the provided 'cardinal') and its generated repeat-indices **H**... ('ordinals')  
-are represented as 'HEXS'; parenthesized sequences of hex digits:
+are represented as 'HEXS'; sequences of (adjacent parenthesized) hex digits:
 
 ```cpp
  XREPEAT((0)(3),X,COLON); -> X((0)(0));X((0)(1));X((0)(2));
