@@ -28,7 +28,7 @@ jobs:
     - run: meson setup ${{ matrix.compiler }}/
       env:
         CC: ${{ matrix.compiler }}
-    - run: meson test -C ${{ matrix.compiler }}// -v
+    - run: meson test -C ${{ matrix.compiler }}/ -v
     - uses: actions/upload-artifact@v1
       if: failure()
       with:
@@ -39,7 +39,7 @@ jobs:
     runs-on: macos-latest
     strategy:
       matrix:
-        compiler: [ g++-11, clang++-12 ]
+        compiler: [ g++, clang++-12 ]
     steps:
     - uses: actions/checkout@v1
     - uses: actions/setup-python@v1
@@ -47,21 +47,18 @@ jobs:
         python-version: '3.x'
     - run: brew install gcc
     - run: pip install meson ninja
-    - run: meson setup ${{ matrix.compiler }}//
+    - run: meson setup ${{ matrix.compiler }}/
       env:
-        CC: gcc
-    - run: meson test -C ${{ matrix.compiler }}// -v
+        CC: ${{ matrix.compiler }}
+    - run: meson test -C ${{ matrix.compiler }}/ -v
     - uses: actions/upload-artifact@v1
       if: failure()
       with:
         name: MacOS_Meson_Testlog
-        path: ${{ matrix.compiler }}//meson-logs/testlog.txt
+        path: ${{ matrix.compiler }}/meson-logs/testlog.txt
 
   windows:
     runs-on: windows-latest
-    strategy:
-      matrix:
-        compiler: [ msvc ]
     steps:
     - uses: actions/checkout@v1
     - uses: actions/setup-python@v1
