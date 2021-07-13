@@ -1,6 +1,3 @@
-// Dispatch of VREPEAT_MACRO with VREPEAT_INDEX argument
-// VREPEAT_MACRO is a macro or include-filename
-
 #define VREPEAT_INDEX D3D2D1(D0)
 #define NREPEAT CAT(OxD3D2D1,D0)
 #if defined VREPEAT_MACRO_STR

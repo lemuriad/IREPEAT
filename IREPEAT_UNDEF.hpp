@@ -1,7 +1,4 @@
-/* 
-   IREPEAT_UNDEFS.hpp
-   #undef for macro names defined in IREPEAT.hpp
- */
+#undef IREPEAT_HPP // IREPEAT_UNDEFS.hpp
 
 #undef XREPEAT
 #undef IREPEAT
@@ -174,5 +171,3 @@
 #undef REPEAT2
 #undef REPEAT3
 #undef REPEAT4
-
-#undef IREPEAT_HPP
