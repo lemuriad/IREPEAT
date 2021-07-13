@@ -1,0 +1,77 @@
+# Copyright 2021 Will Wray
+# Distributed under the Boost Software License, Version 1.0.
+# (See accompanying file LICENSE or http://boost.org/LICENSE_1_0.txt)
+
+name: ci_meson
+
+on:
+  push:
+    paths:
+      - "**.cpp"
+      - "**.hpp"
+  pull_request:
+    paths:
+      - "**.cpp"
+      - "**.hpp"
+jobs:
+  linux:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        compiler: [ g++-10, g++-11, clang++-11, clang++-12 ]
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+    - run: pip install meson ninja
+    - run: meson setup ${{ matrix.compiler }}/
+      env:
+        CC: ${{ matrix.compiler }}
+    - run: meson test -C ${{ matrix.compiler }}// -v
+    - uses: actions/upload-artifact@v1
+      if: failure()
+      with:
+        name: Linux_Meson_Testlog
+        path: ${{ matrix.compiler }}/meson-logs/testlog.txt
+
+  macos:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        compiler: [ g++-11, clang++-12 ]
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-python@v1
+      with:
+        python-version: '3.x'
+    - run: brew install gcc
+    - run: pip install meson ninja
+    - run: meson setup ${{ matrix.compiler }}//
+      env:
+        CC: gcc
+    - run: meson test -C ${{ matrix.compiler }}// -v
+    - uses: actions/upload-artifact@v1
+      if: failure()
+      with:
+        name: MacOS_Meson_Testlog
+        path: ${{ matrix.compiler }}//meson-logs/testlog.txt
+
+  windows:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        compiler: [ msvc ]
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-python@v1
+      with:
+        python-version: '3.x'
+    - run: pip install meson ninja
+    - run: meson setup -Dcpp_args=/Zc:preprocessor -Dcpp_std=c++11 c++11
+    - run: meson test -C c++11/ -v
+    - uses: actions/upload-artifact@v1
+      if: failure()
+      with:
+        name: Windows_Meson_Testlog
+        path: c++11/meson-logs/testlog.txt
