@@ -3,13 +3,12 @@
 
 #define IREPEAT_HPP_DOC /*
 
-   Copyright (c) 2019 Will Wray https://keybase.io/willwray
+  Copyright (c) 2019 Will Wray https://keybase.io/willwray
 
   Distributed under the Boost Software License, Version 1.0.
         http://www.boost.org/LICENSE_1_0.txt
 
   Repo: https://github.com/willwray/IREPEAT
-
 
   IREPEAT(HEXS,M,S) : Inclusive repeat of M(H) with separator S()
   XREPEAT(HEXS,M,S) : Exclusive repeat of M(H) with separator S()
