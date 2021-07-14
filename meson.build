@@ -12,7 +12,7 @@ endif
 IREPEAT_dep = declare_dependency(
   include_directories : include_directories('.'),
   compile_args : extra_args
-).partial_dependency(includes : 'true')
+).partial_dependency(includes : 'true', compile_args : true)
 
 test('test IREPEAT',
   executable('test_IREPEAT', 'test_IREPEAT.cpp',
