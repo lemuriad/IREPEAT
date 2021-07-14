@@ -5,6 +5,7 @@
 name: ci_meson
 
 on:
+  workflow_dispatch
   push:
     paths:
       - "**.cpp"
@@ -37,35 +38,30 @@ jobs:
 
   macos:
     runs-on: macos-latest
-    strategy:
-      matrix:
-        compiler: [ g++, clang++-12 ]
     steps:
-    - uses: actions/checkout@v1
-    - uses: actions/setup-python@v1
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
       with:
         python-version: '3.x'
-    - run: brew install gcc
     - run: pip install meson ninja
-    - run: meson setup ${{ matrix.compiler }}/
-      env:
-        CC: ${{ matrix.compiler }}
-    - run: meson test -C ${{ matrix.compiler }}/ -v
+    - run: meson setup build/
+    - run: meson test -C build/ -v
     - uses: actions/upload-artifact@v1
       if: failure()
       with:
         name: MacOS_Meson_Testlog
-        path: ${{ matrix.compiler }}/meson-logs/testlog.txt
+        path: build/meson-logs/testlog.txt
 
   windows:
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v1
-    - uses: actions/setup-python@v1
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
       with:
         python-version: '3.x'
     - run: pip install meson ninja
-    - run: meson setup -Dcpp_args=/Zc:preprocessor -Dcpp_std=c++11 c++11
+    - uses: ilammy/msvc-dev-cmd@v1
+    - run: meson setup -Dcpp_std=c++11 c++11
     - run: meson test -C c++11/ -v
     - uses: actions/upload-artifact@v1
       if: failure()
