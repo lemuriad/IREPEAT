@@ -15,10 +15,10 @@ IREPEAT_dep = declare_dependency(
 
 test('test IREPEAT',
   executable('test_IREPEAT', 'test_IREPEAT.cpp',
-  cpp_args : '-pedantic')
+  cpp_args : extra_args)
 )
 
 test('test VREPEAT',
   executable('test_VREPEAT', 'test_VREPEAT.cpp',
-  cpp_args : '-pedantic')
+  cpp_args : extra_args)
 )
