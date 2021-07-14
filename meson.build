@@ -3,7 +3,7 @@ project('IREPEAT', 'cpp',
 )
 
 if meson.get_compiler('cpp').get_id() == 'msvc'
-  extra_args = [/Zc:preprocessor]
+  extra_args = ['/Zc:preprocessor']
 else
   extra_args = []
 endif
