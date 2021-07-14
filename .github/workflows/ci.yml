@@ -45,11 +45,7 @@ jobs:
         python-version: '3.x'
     - run: pip install meson
     - run: brew install pkg-config ninja
-    - env:
-        CPPFLAGS: "-I/usr/local/include"
-        LDFLAGS: "-L/usr/local/lib"
-        CC: clang++
-      run: meson setup build/
+    - run: meson setup build/
     - run: meson test -C build/ -v
     - uses: actions/upload-artifact@v1
       if: failure()
