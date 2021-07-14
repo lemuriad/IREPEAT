@@ -49,7 +49,7 @@ jobs:
         CPPFLAGS: "-I/usr/local/include"
         LDFLAGS: "-L/usr/local/lib"
         MESON_UNIT_TEST_BACKEND: ninja
-    - run: meson setup build/
+      run: meson setup build/
     - run: meson test -C build/ -v
     - uses: actions/upload-artifact@v1
       if: failure()
