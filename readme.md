@@ -175,9 +175,9 @@ Four digits is a practical repeat-count limit; 2^16 reps take ~1s and ~1Gbyte.
 
 ------
 
-| Linux Travis gcc-9, clang-7<br> | Windows Appveyor MSVC 19.22.27905<br>`/experimental:preprocessor`|
+| github actions meson build<br>linux, macos, windows | Windows Appveyor MSVC 19.22.27905<br>`/experimental:preprocessor`|
 | :--- | :--- |
-| [![Build Status](https://travis-ci.org/willwray/IREPEAT.svg?branch=master)](https://travis-ci.org/willwray/IREPEAT) | [![Build status](https://ci.appveyor.com/api/projects/status/a821x1mdyfhfah8w?svg=true)](https://ci.appveyor.com/project/willwray/IREPEAT) |
+| [![example workflow](https://github.com/willwray/IREPEAT/actions/workflows/ci.yml/badge.svg)](https://github.com/willwray/IREPEAT/actions) | [![Build status](https://ci.appveyor.com/api/projects/status/a821x1mdyfhfah8w?svg=true)](https://ci.appveyor.com/project/willwray/IREPEAT) |
 
 ------
 

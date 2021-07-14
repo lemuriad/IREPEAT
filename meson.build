@@ -1,4 +1,5 @@
 project('IREPEAT', 'cpp',
+  default_options : ['warning_level=3'],
   version : '0.1'
 )
 
@@ -15,10 +16,10 @@ IREPEAT_dep = declare_dependency(
 
 test('test IREPEAT',
   executable('test_IREPEAT', 'test_IREPEAT.cpp',
-  cpp_args : extra_args)
+  dependencies : [IREPEAT_dep])
 )
 
 test('test VREPEAT',
   executable('test_VREPEAT', 'test_VREPEAT.cpp',
-  cpp_args : extra_args)
+  dependencies : [IREPEAT_dep])
 )
