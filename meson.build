@@ -1,6 +1,6 @@
 project('IREPEAT', 'cpp',
   default_options : ['warning_level=3'],
-  version : '0.1'
+  version : '0.3'
 )
 
 if meson.get_compiler('cpp').get_id() == 'msvc'
@@ -14,7 +14,7 @@ endif
 IREPEAT_dep = declare_dependency(
   include_directories : include_directories('.'),
   compile_args : extra_args
-).partial_dependency(includes : 'true', compile_args : true)
+).partial_dependency(includes : true, compile_args : true)
 
 test('test IREPEAT',
   executable('test_IREPEAT', 'test_IREPEAT.cpp',
