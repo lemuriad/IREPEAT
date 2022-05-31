@@ -1,6 +1,6 @@
 project('IREPEAT', 'cpp',
   default_options : ['warning_level=3'],
-  version : '0.3'
+  version : '0.4'
 )
 
 if meson.get_compiler('cpp').get_id() == 'msvc'
