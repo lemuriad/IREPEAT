@@ -9,6 +9,8 @@
    the USE_DOCTEST switch is a start.
  */
 
+#define DOT().
+
 #if defined(USE_DOCTEST)
 
   #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
@@ -72,14 +74,19 @@ CHECKSTR( XREPEAT((1),SEQCAT,COMMA), "0");
 CHECKSTR( IREPEAT((0),SEQCAT,COMMA), "0");
 
 CHECKSTR( XREPEAT((8),SEQCAT,NOSEP), "01234567");
+CHECKSTR( XREPEAT((8),SEQCAT,DOT), "0.1.2.3.4.5.6.7");
 CHECKSTR( XREPEAT((f),SEQCAT,NOSEP), "0123456789abcde");
 CHECKSTR( IREPEAT((f),SEQCAT,NOSEP), "0123456789abcdef");
 CHECKSTR( XREPEAT((1)(0),RMLZCAT,NOSEP), "0123456789abcdef");
+CHECKSTR( XREPEAT((1)(0),RMLZCAT,DOT), "0.1.2.3.4.5.6.7.8.9.a.b.c.d.e.f");
 
 using uchars = unsigned char[];
 using u16s = unsigned short[];
 
+CHECK(is_iota<0x10>(uchars{XREPEAT((1)(0),HEXLIT,COMMA)}));
+
 CHECK(is_iota<0xff>(uchars{XREPEAT((f)(f),HEXLIT,COMMA)}));
+CHECK(is_iota<0x100>(uchars{XREPEAT((1)(0)(0),HEXLIT,COMMA)}));
 CHECK(is_iota<0x100>(u16s{IREPEAT((f)(f),HEXLIT,COMMA)}));
 
 // This check is too big for the C++11 is_iota constexpr eval

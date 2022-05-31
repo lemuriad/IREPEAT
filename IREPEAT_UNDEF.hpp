@@ -51,6 +51,11 @@
 #undef RMLZ_0
 #undef RMLZ3
 
+#undef RMLF
+#undef RMLF_
+#undef RMLF_f
+#undef RMLF4
+
 #undef xD
 #undef XD
 #undef x0D
@@ -161,12 +166,78 @@
 
 #undef POST
 
-#undef DOREPEAT
+#undef EVAL
+#undef EVAL2
+#undef EVAL4
+
+#undef REVERSE
+#undef REVERSEu
+#undef REVERSEv
+#undef REVERSEu_
+#undef REVERSEv_
+
+#undef INC_0
+#undef INC_1
+#undef INC_2
+#undef INC_3
+#undef INC_4
+#undef INC_5
+#undef INC_6
+#undef INC_7
+#undef INC_8
+#undef INC_9
+#undef INC_a
+#undef INC_b
+#undef INC_c
+#undef INC_d
+#undef INC_e
+#undef INC_f
+
+#undef DEC_0
+#undef DEC_1
+#undef DEC_2
+#undef DEC_3
+#undef DEC_4
+#undef DEC_5
+#undef DEC_6
+#undef DEC_7
+#undef DEC_8
+#undef DEC_9
+#undef DEC_a
+#undef DEC_b
+#undef DEC_c
+#undef DEC_d
+#undef DEC_e
+#undef DEC_f
+
+#undef NOPi
+#undef NOPj
+#undef NOPi_
+#undef NOPj_
+
+#undef INCi
+#undef INCj
+#undef INCi_
+#undef INCj_
+
+#undef DECi
+#undef DECj
+#undef DECi_
+#undef DECj_
+
+#undef INC
+#undef DEC
+
+#undef DECZ
+#undef CHK0
+#undef CHK00
+
 #undef DOREP1
 #undef DOREP2
 #undef DOREP3
 #undef DOREP4
 
+#undef REPEAT0
 #undef REPEAT1
 #undef REPEAT2
 #undef REPEAT3

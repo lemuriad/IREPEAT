@@ -19,10 +19,10 @@
 */
 #undef IREPEAT_HPP_DOC
 
-#define XREPEAT(HEXS,M,S) DOREPEAT(X,LEN(HEXS),HEXS,S,M) /*
+#define XREPEAT(HEXS,M,S) IREPEAT(DECZ(HEXS),M,S) /*
         Exclusive repeat of M(H) with separator S() */
 
-#define IREPEAT(HEXS,M,S) DOREPEAT(I,LEN(HEXS),HEXS,S,M) /*
+#define IREPEAT(HEXS,M,S) CAT(REPEAT,LEN(HEXS))(HEXS,S,M) /*
         Inclusive repeat of M(H) with separator S() */
 
 #define STR_(A) #A
@@ -81,6 +81,12 @@ A##B##C##D##E##F##G##H##I##J##K##L##M##N##O##P
 #define RMLZ_(D) CAT(RMLZ_,D)
 #define RMLZ_0(D) ,EAT,
 #define RMLZ3(HEXS) RMLZ(RMLZ(RMLZ(HEXS)))
+
+#define RMLF(HEXS) ARG1(RMLF_ HEXS,,)HEXS /*
+  Remove a leading (f) from HEXS seq, leave no leading (f) */
+#define RMLF_(D) CAT(RMLF_,D)
+#define RMLF_f ,EAT,
+#define RMLF4(HEXS) RMLF(RMLF(RMLF(RMLF(HEXS))))
 
 #define xD(HEXS) CAT(x,RMLZCAT(HEXS)) // Prepend 'x' to HEXS hexits
 #define XD(HEXS) CAT(X,RMLZCAT(HEXS)) // Prepend 'X' to HEXS hexits
@@ -200,24 +206,91 @@ S()M(8)S()M(9)S()M(a)S()M(b)S()M(c)S()M(d)S()M(e)S()M(f)
 
 #define POST(D) POST_##D
 
-#define DOREPEAT(V,N,Ds,S,M) CAT(REPEAT,N)(V,Ds,S,M) // Dispatch
+#define EVAL(...)__VA_ARGS__
+#define EVAL2(...)EVAL(EVAL(__VA_ARGS__))
+#define EVAL4(...)EVAL2(EVAL2(__VA_ARGS__))
+
+#define REVERSE(HEXS) EVAL(IDEN EVAL4(POSTCAT(_,REVERSEu HEXS)()))
+#define REVERSEu(E) POST_##E REVERSEv
+#define REVERSEv(E) POST_##E REVERSEu
+#define REVERSEv_
+#define REVERSEu_
+
+#define INC_0 (1)NOP
+#define INC_1 (2)NOP
+#define INC_2 (3)NOP
+#define INC_3 (4)NOP
+#define INC_4 (5)NOP
+#define INC_5 (6)NOP
+#define INC_6 (7)NOP
+#define INC_7 (8)NOP
+#define INC_8 (9)NOP
+#define INC_9 (a)NOP
+#define INC_a (b)NOP
+#define INC_b (c)NOP
+#define INC_c (d)NOP
+#define INC_d (e)NOP
+#define INC_e (f)NOP
+#define INC_f (0)INC
+
+#define DEC_0 (f)DEC
+#define DEC_1 (0)NOP
+#define DEC_2 (1)NOP
+#define DEC_3 (2)NOP
+#define DEC_4 (3)NOP
+#define DEC_5 (4)NOP
+#define DEC_6 (5)NOP
+#define DEC_7 (6)NOP
+#define DEC_8 (7)NOP
+#define DEC_9 (8)NOP
+#define DEC_a (9)NOP
+#define DEC_b (a)NOP
+#define DEC_c (b)NOP
+#define DEC_d (c)NOP
+#define DEC_e (d)NOP
+#define DEC_f (e)NOP
+
+#define NOPi(D) (D)NOPj
+#define NOPj(D) (D)NOPi
+#define NOPi_
+#define NOPj_
+
+#define INCi(D) CAT(CAT(INC_,D),j)
+#define INCj(D) CAT(CAT(INC_,D),i)
+#define INCi_ (1)
+#define INCj_ (1)
+
+#define DECi(D) CAT(CAT(DEC_,D),j)
+#define DECj(D) CAT(CAT(DEC_,D),i)
+#define DECi_
+#define DECj_
+
+#define INC(HEXS) REVERSE(EVAL(POSTCAT(_,EVAL(INCi REVERSE(HEXS)))))
+#define DEC(HEXS) REVERSE(EVAL(POSTCAT(_,EVAL(DECi REVERSE(HEXS)))))
+
+#define DECZ(HEXS) ARG1(EVAL(CHK0 RMLZ3(HEXS)),DEC(HEXS),)
+#define CHK0(D) CAT(CHK0,D)
+#define CHK00 ,,
+
 #define DOREP1(...) __VA_ARGS__
 #define DOREP2(...) __VA_ARGS__
 #define DOREP3(...) __VA_ARGS__
 #define DOREP4(...) __VA_ARGS__
 
-#define REPEAT1(V,D,S,M) DOREP1(REPS(V,IDEN D,S,M IDEP))
+#define REPEAT0(D,S,M)
 
-#define REPEAT2(V,DD,S,M) DOREP2(\
-DOREP2(REPT(X,SHEAD(DD),(I,(f),S,M PRE)S,REPEAT1 POST))\
-REPEAT1(V,EAT DD,S,M PRE(SHEAD(DD))))
+#define REPEAT1(D,S,M) DOREP1(REPS(I,IDEN D,S,M IDEP))
 
-#define REPEAT3(V,DDD,S,M) DOREP3(\
-DOREP3(REPT(X,SHEAD(DDD),(I,(f)(f),S,M PRE)S,REPEAT2 POST))\
-REPEAT2(V,EAT DDD,S,M PRE(SHEAD(DDD))))
+#define REPEAT2(DD,S,M) DOREP2(\
+DOREP2(REPT(X,SHEAD(DD),((f),S,M PRE)S,REPEAT1 POST))\
+REPEAT1(EAT DD,S,M PRE(SHEAD(DD))))
 
-#define REPEAT4(V,DDDD,S,M) DOREP4(\
-DOREP4(REPT(X,SHEAD(DDDD),(I,(f)(f)(f),S,M PRE)S,REPEAT3 POST))\
-REPEAT3(V,EAT DDDD,S,M PRE(SHEAD(DDDD))))
+#define REPEAT3(DDD,S,M) DOREP3(\
+DOREP3(REPT(X,SHEAD(DDD),((f)(f),S,M PRE)S,REPEAT2 POST))\
+REPEAT2(EAT DDD,S,M PRE(SHEAD(DDD))))
+
+#define REPEAT4(DDDD,S,M) DOREP4(\
+DOREP4(REPT(X,SHEAD(DDDD),((f)(f)(f),S,M PRE)S,REPEAT3 POST))\
+REPEAT3(EAT DDDD,S,M PRE(SHEAD(DDDD))))
 
 #endif
