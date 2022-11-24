@@ -37,7 +37,7 @@ jobs:
         path: ${{ matrix.compiler }}/meson-logs/testlog.txt
 
   macos:
-    runs-on: macos-latest
+    runs-on: macos-12
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-python@v4
@@ -45,7 +45,7 @@ jobs:
         python-version: '3.x'
     - run: pip install meson
     - run: brew install ninja
-    - run: CXX=clang-14 meson setup -Dcpp_std=c++11 build/
+    - run: meson setup -Dcpp_std=c++11 build/
     - run: meson test -C build/ -v
     - uses: actions/upload-artifact@v3
       if: failure()
