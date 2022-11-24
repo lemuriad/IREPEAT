@@ -44,8 +44,8 @@ jobs:
       with:
         python-version: '3.x'
     - run: pip install meson
-    - run: brew install pkg-config ninja
-    - run: CXX=clang-14++ meson setup -Dcpp_std=c++11 build/
+    - run: brew install ninja
+    - run: CXX=clang-14 meson setup -Dcpp_std=c++11 build/
     - run: meson test -C build/ -v
     - uses: actions/upload-artifact@v3
       if: failure()
