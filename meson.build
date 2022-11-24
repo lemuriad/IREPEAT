@@ -1,12 +1,12 @@
 project('IREPEAT', 'cpp',
   default_options : ['warning_level=3'],
-  version : '0.5'
+  version : 'v0.5'
 )
 
 if meson.get_compiler('cpp').get_id() == 'msvc'
   extra_args = ['/Zc:preprocessor']
 elif meson.get_compiler('cpp').get_id() == 'clang'
-  extra_args = []
+  extra_args = [-Wno-pedantic]
 else
   extra_args = []
 endif

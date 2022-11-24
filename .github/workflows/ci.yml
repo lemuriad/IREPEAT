@@ -21,16 +21,14 @@ jobs:
       matrix:
         compiler: [ g++-10, g++-11, clang++-11, clang++-12 ]
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
     - run: pip install meson ninja
     - run: meson setup ${{ matrix.compiler }}/
       env:
         CC: ${{ matrix.compiler }}
     - run: meson test -C ${{ matrix.compiler }}/ -v
-    - uses: actions/upload-artifact@v1
+    - uses: actions/upload-artifact@v3
       if: failure()
       with:
         name: Linux_Meson_Testlog
@@ -39,15 +37,13 @@ jobs:
   macos:
     runs-on: macos-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
     - run: pip install meson
     - run: brew install pkg-config ninja
-    - run: meson setup build/
+    - run: CXX=clang-14++ meson setup -Dcpp_std=c++11 build/
     - run: meson test -C build/ -v
-    - uses: actions/upload-artifact@v1
+    - uses: actions/upload-artifact@v3
       if: failure()
       with:
         name: MacOS_Meson_Testlog
@@ -56,15 +52,15 @@ jobs:
   windows:
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-python@v2
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
       with:
         python-version: '3.x'
     - run: pip install meson ninja
     - uses: ilammy/msvc-dev-cmd@v1
     - run: meson setup -Dcpp_std=c++11 c++11
     - run: meson test -C c++11/ -v
-    - uses: actions/upload-artifact@v1
+    - uses: actions/upload-artifact@v3
       if: failure()
       with:
         name: Windows_Meson_Testlog
