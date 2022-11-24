@@ -23,6 +23,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
     - run: pip install meson ninja
     - run: meson setup ${{ matrix.compiler }}/
       env:
@@ -39,6 +41,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
     - run: pip install meson
     - run: brew install pkg-config ninja
     - run: CXX=clang-14++ meson setup -Dcpp_std=c++11 build/
