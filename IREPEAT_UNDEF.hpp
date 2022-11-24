@@ -1,4 +1,4 @@
-#undef IREPEAT_HPP // IREPEAT_UNDEFS.hpp
+#undef IREPEAT_HPP
 
 #undef XREPEAT
 #undef IREPEAT

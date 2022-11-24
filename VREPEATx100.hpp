@@ -73,4 +73,4 @@
 #undef D3D2D1
 
 #undef D1
-#undef D2 // defined in VREPEATx1000.hpp, undef here saves x10 undef there
+#undef D2

@@ -9,4 +9,4 @@ VREPEAT_MACRO(VREPEAT_INDEX)
 #endif
 #undef VREPEAT_INDEX
 #undef NREPEAT
-#undef D0 // defined in VREPEATx10.hpp, undef here saves x10 undef there
+#undef D0
