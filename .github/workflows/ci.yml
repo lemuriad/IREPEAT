@@ -16,10 +16,10 @@ on:
       - "**.hpp"
 jobs:
   linux:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     strategy:
       matrix:
-        compiler: [ g++-10, g++-11, clang++-11, clang++-12 ]
+        compiler: [ g++-10, g++-12, clang++-12, clang++-14 ]
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-python@v4
