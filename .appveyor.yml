@@ -9,11 +9,11 @@ platform: x64
 
 environment:
   matrix:
-    # Visual Studio 2019
-    - GENERATOR: Visual Studio 16 2019 Win64
+    # Visual Studio 2022
+    - GENERATOR: Visual Studio 17 2022 Win64
       STDFLAGS: /std:c++latest
       SCRIPT: support/vs.py
-      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2022
 
 install:
   - git submodule -q update --init
@@ -21,7 +21,7 @@ install:
   - cmd: mkdir C:\ninja-build
   - ps: (new-object net.webclient).DownloadFile('https://github.com/mesonbuild/cidata/raw/master/ninja.exe', 'C:\ninja-build\ninja.exe')
   # Set paths to dependencies (based on architecture)
-  - cmd: set PYTHON_ROOT=C:\python37-x64
+  - cmd: set PYTHON_ROOT=C:\python311-x64
   # Print out dependency paths
   - cmd: echo Using Python at %PYTHON_ROOT%
   # Add neccessary paths to PATH variable
@@ -33,17 +33,20 @@ install:
 
 before_build:
   # Enable the Visual C++ toolset for command-line builds.
-  - IF "%APPVEYOR_BUILD_WORKER_IMAGE%"=="Visual Studio 2019" (
-      call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat"
+  - IF "%APPVEYOR_BUILD_WORKER_IMAGE%"=="Visual Studio 2022" (
+      call "C:\Program Files (x86)\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars64.bat"
     )
 
 build_script:
   - cmd: echo Building on %arch% with %compiler%
-  - cmd: meson --backend=vs2019 --buildtype=release -Dcpp_args=/experimental:preprocessor -Dcpp_std=c++11 c++11
-  - cmd: meson --backend=vs2019 --buildtype=release -Dcpp_args=/experimental:preprocessor -Dcpp_std=c++17 c++17
-  #- cmd: meson --backend=vs2019 --buildtype=release -Dcpp_args=/experimental:preprocessor -Dcpp_std=c++latest c++latest
-  - cmd: msbuild c++11\test_IREPEAT@exe.vcxproj /p:configuration=release
-  - cmd: msbuild c++17\test_IREPEAT@exe.vcxproj /p:configuration=release
+  - cmd: meson setup --buildtype=release -Dcpp_args=/Zc:preprocessor -Dcpp_std=c++11 c++11
+  - cmd: meson setup --buildtype=release -Dcpp_args=/Zc:preprocessor -Dcpp_std=c++17 c++17
+  - cmd: meson setup --buildtype=release -Dcpp_args=/Zc:preprocessor -Dcpp_std=c++latest c++latest
+  - cmd: meson test -C c++11
+  - cmd: meson test -C c++17
+  - cmd: meson test -C c++latest
+  #- cmd: msbuild c++11\test_IREPEAT@exe.vcxproj /p:configuration=release
+  #- cmd: msbuild c++17\test_IREPEAT@exe.vcxproj /p:configuration=release
   #- cmd: msbuild c++latest\test_IREPEAT@exe.vcxproj /p:configuration=release
 
 test_script:
