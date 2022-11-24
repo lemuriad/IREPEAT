@@ -32,6 +32,7 @@ install:
   - cmd: ninja --version
 
 before_build:
+  - C:\Program Files (x86)\Microsoft Visual Studio\Installer> vswhere.exe -legacy -prerelease -format json
   # Enable the Visual C++ toolset for command-line builds.
   # - IF "%APPVEYOR_BUILD_WORKER_IMAGE%"=="Visual Studio 2022" (
   #     call "C:\Program Files (x86)\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars64.bat"
@@ -39,9 +40,9 @@ before_build:
 
 build_script:
   - cmd: echo Building on %arch% with %compiler%
-  - cmd: meson setup --buildtype=release -Dcpp_args=/Zc:preprocessor -Dcpp_std=c++11 c++11
-  - cmd: meson setup --buildtype=release -Dcpp_args=/Zc:preprocessor -Dcpp_std=c++17 c++17
-  - cmd: meson setup --buildtype=release -Dcpp_args=/Zc:preprocessor -Dcpp_std=c++latest c++latest
+  - cmd: meson setup --backend=vs --buildtype=release -Dcpp_args=/Zc:preprocessor -Dcpp_std=c++11 c++11
+  - cmd: meson setup --backend=vs --buildtype=release -Dcpp_args=/Zc:preprocessor -Dcpp_std=c++17 c++17
+  - cmd: meson setup --backend=vs --buildtype=release -Dcpp_args=/Zc:preprocessor -Dcpp_std=c++latest c++latest
   - cmd: meson test -C c++11
   - cmd: meson test -C c++17
   - cmd: meson test -C c++latest
