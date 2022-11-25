@@ -43,6 +43,9 @@ build_script:
   - cmd: meson setup --backend=vs --buildtype=release -Dcpp_args=/Zc:preprocessor -Dcpp_std=c++11 c++11
   - cmd: meson setup --backend=vs --buildtype=release -Dcpp_args=/Zc:preprocessor -Dcpp_std=c++17 c++17
   - cmd: meson setup --backend=vs --buildtype=release -Dcpp_args=/Zc:preprocessor -Dcpp_std=c++latest c++latest
+  - cmd: meson compile -C c++11
+  - cmd: meson compile -C c++17
+  - cmd: meson compile -C c++latest
   - cmd: meson test -C c++11
   - cmd: meson test -C c++17
   - cmd: meson test -C c++latest
