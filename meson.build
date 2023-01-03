@@ -16,12 +16,14 @@ IREPEAT_dep = declare_dependency(
   compile_args : extra_args
 ).partial_dependency(includes : true, compile_args : true)
 
-test('test IREPEAT',
-  executable('test_IREPEAT', 'test_IREPEAT.cpp',
-  dependencies : [IREPEAT_dep])
-)
+if not meson.is_subproject()
+  test('test IREPEAT',
+    executable('test_IREPEAT', 'test_IREPEAT.cpp',
+    dependencies : [IREPEAT_dep])
+  )
 
-test('test VREPEAT',
-  executable('test_VREPEAT', 'test_VREPEAT.cpp',
-  dependencies : [IREPEAT_dep])
-)
+  test('test VREPEAT',
+    executable('test_VREPEAT', 'test_VREPEAT.cpp',
+    dependencies : [IREPEAT_dep])
+  )
+endif
