@@ -16,7 +16,8 @@ IREPEAT_dep = declare_dependency(
   compile_args : extra_args
 ).partial_dependency(includes : true, compile_args : true)
 
-if not meson.is_subproject()
+if get_option('tests').disable_auto_if(meson.is_subproject()).allowed()
+
   test('test IREPEAT',
     executable('test_IREPEAT', 'test_IREPEAT.cpp',
     dependencies : [IREPEAT_dep])
@@ -26,4 +27,5 @@ if not meson.is_subproject()
     executable('test_VREPEAT', 'test_VREPEAT.cpp',
     dependencies : [IREPEAT_dep])
   )
+
 endif
