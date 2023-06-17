@@ -175,17 +175,19 @@ Four digits is a practical repeat-count limit; 2^16 reps take ~1s and ~1Gbyte.
 
 ------
 
-| github actions meson build<br>linux, macos, windows | Windows Appveyor MSVC 19.22.27905<br>`/experimental:preprocessor`|
-| :--- | :--- |
-| [![example workflow](https://github.com/willwray/IREPEAT/actions/workflows/ci.yml/badge.svg)](https://github.com/willwray/IREPEAT/actions) | [![Build status](https://ci.appveyor.com/api/projects/status/a821x1mdyfhfah8w?svg=true)](https://ci.appveyor.com/project/willwray/IREPEAT) |
+| ![](../../actions/workflows/ci.yml/badge.svg) | github actions meson build: linux gcc10 & 12, clang 12 & 14, macos 12, windows latest |
 
 ------
 
 ## [Documentation page](documentation.md)
+
+```c++
+// Don't forget to #undef your #define's
+#include <IREPEAT_UNDEF.hpp>
+```
 
 ------
 
 ## Credits
 
 Props to pre-pro pioneers, particularly Paul Mensonides.  
-Don't forget to `#undef` your `#define`'s.

@@ -6,14 +6,13 @@ name: ci_meson
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - "**.cpp"
-      - "**.hpp"
   pull_request:
-    paths:
-      - "**.cpp"
-      - "**.hpp"
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - readme.md
+
 jobs:
   linux:
     runs-on: ubuntu-22.04
