@@ -38,6 +38,11 @@ Also at [boost.org](http://www.boost.org/LICENSE_1_0.txt) and accompanying file 
 
 ------
 
+![GitHub Actions Badge](../../actions/workflows/ci.yml/badge.svg)
+GitHub Actions meson build: linux gcc10 & 12, clang 12 & 14, macos 12, windows latest
+
+------
+
 ### IREPEAT, XREPEAT and VREPEAT
 
 Preprocessor utilities to generate indexed repetitions, for codegen & etc.  
@@ -172,12 +177,6 @@ The hex letter-digits are required to be lowercase only.
 Four digits is a practical repeat-count limit; 2^16 reps take ~1s and ~1Gbyte.
 
 </details>
-
-------
-
-| ![](../../actions/workflows/ci.yml/badge.svg) | github actions meson build: linux gcc10 & 12, clang 12 & 14, macos 12, windows latest |
-
-------
 
 ## [Documentation page](documentation.md)
 
