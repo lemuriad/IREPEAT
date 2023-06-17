@@ -2,7 +2,7 @@
 
 ## C++ preprocessor macros for indexed repetitions
 
-<details><summary>Copyright &copy; 2019 Will Wray. Distributed under the Boost Software License, V1.0</summary>
+<details><summary>Copyright &copy; 2023 The Lemuriad. Distributed under the Boost Software License, V1.0</summary>
 
 ### **Boost Software License** - Version 1.0 - August 17th, 2003
 
