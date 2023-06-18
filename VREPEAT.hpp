@@ -1,3 +1,7 @@
+#if 0
+ SPDX-FileCopyrightText: 2023 The Lemuriad <opensource@lemurianlabs.com>
+ SPDX-License-Identifier: BSL-1.0
+#endif
 #define NREPEATS HEXLIT(VREPEAT_COUNT)
 
 #if __has_include(STR(VREPEAT_MACRO))

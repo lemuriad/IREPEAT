@@ -1,3 +1,5 @@
+// SPDX-FileCopyrightText: 2023 The Lemuriad <opensource@lemurianlabs.com>
+// SPDX-License-Identifier: BSL-1.0
 #undef IREPEAT_HPP
 
 #undef XREPEAT

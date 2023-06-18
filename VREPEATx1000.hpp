@@ -1,3 +1,7 @@
+#if 0
+ SPDX-FileCopyrightText: 2023 The Lemuriad <opensource@lemurianlabs.com>
+ SPDX-License-Identifier: BSL-1.0
+#endif
 #if defined(C3)
 #define OxD3 CAT(0x,D3)
 #define D3D2 (D3)(D2)

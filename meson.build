@@ -1,6 +1,8 @@
+# SPDX-FileCopyrightText: 2023 The Lemuriad <opensource@lemurianlabs.com>
+# SPDX-License-Identifier: BSL-1.0
 project('IREPEAT', 'cpp',
   default_options : ['warning_level=3'],
-  version : 'v0.5'
+  version : 'v0.6'
 )
 
 if meson.get_compiler('cpp').get_id() == 'msvc'

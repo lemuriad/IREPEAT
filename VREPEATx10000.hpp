@@ -1,10 +1,16 @@
-//#if defined(C4) // C4 would be a 5th count digit
-//#define Ox
-//#define D3
-//#else
-//#define Ox (C3)
-//#define D3 (D3)
-//#endif
+#if 0
+ SPDX-FileCopyrightText: 2023 The Lemuriad <opensource@lemurianlabs.com>
+ SPDX-License-Identifier: BSL-1.0
+#endif
+#if 0
+#if defined(C4) // C4 would be a 5th count digit
+#define Ox
+#define D3
+#else
+#define Ox (C3)
+#define D3 (D3)
+#endif
+#endif
 
 #define D3 0
 #include "VREPEATx1000.hpp"

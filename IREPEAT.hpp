@@ -2,13 +2,10 @@
 #define IREPEAT_HPP // including the IREPEAT_HPP header guard.
 
 #if 0 /*
+  SPDX-FileCopyrightText: 2023 The Lemuriad <opensource@lemurianlabs.com>
+  SPDX-License-Identifier: BSL-1.0
 
-  Copyright (c) 2019 Will Wray https://keybase.io/willwray
-
-  Distributed under the Boost Software License, Version 1.0.
-        http://www.boost.org/LICENSE_1_0.txt
-
-  Repo: https://github.com/willwray/IREPEAT
+  Repo: https://github.com/Lemuriad/IREPEAT
 
   IREPEAT(HEXS,M,S) : Inclusive repeat of M(H) with separator S()
   XREPEAT(HEXS,M,S) : Exclusive repeat of M(H) with separator S()
