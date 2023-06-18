@@ -5,13 +5,7 @@ project('irepeat', 'cpp',
   version : 'v0.6'
 )
 
-if meson.get_compiler('cpp').get_id() == 'msvc'
-  extra_args = ['/Zc:preprocessor']
-elif meson.get_compiler('cpp').get_id() == 'clang'
-  extra_args = []
-else
-  extra_args = []
-endif
+extra_args = meson.get_compiler('cpp').get_supported_arguments('/Zc:preprocessor')
 
 irepeat_dep = declare_dependency(
   include_directories : include_directories('.'),
