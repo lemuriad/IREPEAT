@@ -15,12 +15,12 @@ irepeat_dep = declare_dependency(
 if get_option('tests').disable_auto_if(meson.is_subproject()).allowed()
 
   test('test IREPEAT',
-    executable('test_IREPEAT', 'test_IREPEAT.cpp',
+    executable('test_IREPEAT', 'tests/test_IREPEAT.cpp',
     dependencies : [irepeat_dep])
   )
 
   test('test VREPEAT',
-    executable('test_VREPEAT', 'test_VREPEAT.cpp',
+    executable('test_VREPEAT', 'tests/test_VREPEAT.cpp',
     dependencies : [irepeat_dep])
   )
 
